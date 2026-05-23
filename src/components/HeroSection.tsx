@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import VideoBackground from "@/components/VideoBackground";
 import MagneticButton from "@/components/MagneticButton";
 import AnimatedHeadline from "@/components/AnimatedHeadline";
-import { ASSETS } from "@/lib/assets";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -43,11 +42,16 @@ export default function HeroSection() {
       id="hero"
       className="relative h-screen min-h-[700px] flex items-start justify-center overflow-hidden"
     >
-      {/* Video Background */}
+      {/* Video Background — Pinterest hero */}
       <VideoBackground
-        src={ASSETS.videos.heroEstate}
-        poster={ASSETS.images.heroEstatePoster}
-        coverWatermark
+        src="/videos/coffee-pour.mp4"
+        videoClassName="[filter:brightness(1.25)_saturate(1.35)]"
+        overlay={
+          <>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1a1410]/75 via-[#16110d]/45 to-[#0d0b09]/15" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a1410]/30 via-transparent to-[#0d0b09]/60" />
+          </>
+        }
       />
 
       {/* Content */}

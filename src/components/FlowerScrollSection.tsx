@@ -12,8 +12,8 @@ function seededRandom(seed: number) {
 }
 
 const PARTICLES = Array.from({ length: 15 }, (_, i) => ({
-  left: 10 + seededRandom(i * 3) * 80,
-  top: 10 + seededRandom(i * 3 + 1) * 80,
+  left: parseFloat((10 + seededRandom(i * 3) * 80).toFixed(4)),
+  top: parseFloat((10 + seededRandom(i * 3 + 1) * 80).toFixed(4)),
   yRange: -(30 + seededRandom(i * 3 + 2) * 40),
   duration: 4 + seededRandom(i * 3 + 3) * 4,
   delay: seededRandom(i * 3 + 4) * 4,
@@ -42,17 +42,16 @@ export default function FlowerScrollSection() {
       ref={ref}
       className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
     >
-      {/* Video background */}
+      {/* Video background — serene ocean wave */}
       <VideoBackground
-        src="/videos/flower-section.mp4"
+        src="/videos/second-page.mp4"
+        videoClassName="[filter:brightness(1.15)_saturate(1.25)]"
         overlay={
           <>
-            {/* Rich cinematic overlay — deep charcoal left to transparent right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-charcoal/40 to-charcoal/10" />
-            {/* Bottom fade into next section */}
-            <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-charcoal/60 to-transparent" />
-            {/* Subtle vignette */}
-            <div className="absolute inset-0 bg-radial-[ellipse_at_center] from-transparent via-transparent to-charcoal/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1c170f]/85 via-[#16110d]/50 to-[#0d0b09]/15" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1a1510]/25 via-transparent to-[#0d0b09]/65" />
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-charcoal to-transparent" />
+            <div className="absolute inset-0 bg-radial-[ellipse_at_center] from-transparent via-transparent to-[#0d0b09]/30" />
           </>
         }
       />
@@ -62,7 +61,7 @@ export default function FlowerScrollSection() {
         {PARTICLES.map((p, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-ivory/20 rounded-full"
+            className="absolute w-1 h-1 bg-champagne/30 rounded-full"
             style={{
               left: `${p.left}%`,
               top: `${p.top}%`,

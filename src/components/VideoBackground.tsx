@@ -5,6 +5,7 @@ interface VideoBackgroundProps {
   poster?: string;
   overlay?: React.ReactNode;
   className?: string;
+  videoClassName?: string;
   coverWatermark?: boolean;
 }
 
@@ -13,6 +14,7 @@ export default function VideoBackground({
   poster,
   overlay,
   className = "",
+  videoClassName = "",
   coverWatermark = false,
 }: VideoBackgroundProps) {
   return (
@@ -28,7 +30,7 @@ export default function VideoBackground({
         playsInline
         preload="auto"
         poster={poster}
-        className="absolute inset-0 w-full h-full object-cover"
+        className={`absolute inset-0 w-full h-full object-cover ${videoClassName}`}
         style={{ objectPosition: "50% 30%" }}
       >
         <source src={src} type="video/mp4" />
