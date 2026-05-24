@@ -1,16 +1,9 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import MagneticButton from "@/components/MagneticButton";
 import AnimatedHeadline from "@/components/AnimatedHeadline";
-import ErrorBoundary from "@/components/ErrorBoundary";
-
-const SplineScene = dynamic(
-  () => import("@splinetool/react-spline"),
-  { ssr: false }
-);
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -37,14 +30,15 @@ export default function HeroSection() {
       id="hero"
       className="relative h-screen min-h-[700px] flex items-start justify-center overflow-hidden bg-charcoal"
     >
-      {/* Spline 3D background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <ErrorBoundary fallback={<div className="absolute inset-0 bg-charcoal" />}>
-          <SplineScene
-            scene="https://my.spline.design/distortingtypography-uxFNYzMMLPZAKHaeN2BQY6hm/"
-          />
-        </ErrorBoundary>
-      </div>
+      {/* Spline 3D background — iframe embed */}
+      <iframe
+        src="https://my.spline.design/distortingtypography-uxFNYzMMLPZAKHaeN2BQY6hm/"
+        className="absolute inset-0 w-full h-full border-0"
+        style={{ pointerEvents: "none" }}
+        title="3D typography background"
+        loading="lazy"
+        aria-hidden="true"
+      />
 
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#1a1410]/70 via-[#16110d]/40 to-transparent" />
