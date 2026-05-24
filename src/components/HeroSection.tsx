@@ -34,13 +34,15 @@ export default function HeroSection() {
       <iframe
         src="https://my.spline.design/distortingtypography-uxFNYzMMLPZAKHaeN2BQY6hm/"
         className="absolute inset-0 w-full h-full border-0"
-        style={{ pointerEvents: "none" }}
         title="3D typography background"
         aria-hidden="true"
       />
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-20 pt-32 lg:pt-48">
+      {/* Content — pointer-events:none so mouse passes through to Spline; buttons override with auto */}
+      <div
+        className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-20 pt-32 lg:pt-48"
+        style={{ pointerEvents: "none" }}
+      >
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -78,12 +80,13 @@ export default function HeroSection() {
           businesses ready to look sharper online.
         </motion.p>
 
-        {/* Buttons */}
+        {/* Buttons — pointer-events:auto so they stay clickable */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
           className="mt-10 flex flex-wrap gap-5"
+          style={{ pointerEvents: "auto" }}
         >
           <MagneticButton href="#contact" variant="primary">
             Start a project
