@@ -1,10 +1,16 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import Spline from "@splinetool/react-spline";
 import MagneticButton from "@/components/MagneticButton";
 import AnimatedHeadline from "@/components/AnimatedHeadline";
+import ErrorBoundary from "@/components/ErrorBoundary";
+
+const SplineScene = dynamic(
+  () => import("@splinetool/react-spline"),
+  { ssr: false }
+);
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -33,10 +39,11 @@ export default function HeroSection() {
     >
       {/* Spline 3D background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <Spline
-          scene="https://my.spline.design/distortingtypography-uxFNYzMMLPZAKHaeN2BQY6hm/"
-          className="w-full h-full"
-        />
+        <ErrorBoundary fallback={<div className="absolute inset-0 bg-charcoal" />}>
+          <SplineScene
+            scene="https://my.spline.design/distortingtypography-uxFNYzMMLPZAKHaeN2BQY6hm/"
+          />
+        </ErrorBoundary>
       </div>
 
       {/* Dark overlay for text readability */}
