@@ -36,13 +36,8 @@ export default function HeroSection() {
         className="absolute inset-0 w-full h-full border-0"
         style={{ pointerEvents: "none" }}
         title="3D typography background"
-        loading="lazy"
         aria-hidden="true"
       />
-
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#1a1410]/70 via-[#16110d]/40 to-transparent" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#1a1410]/30 via-transparent to-[#0d0b09]/70" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-20 pt-32 lg:pt-48">
