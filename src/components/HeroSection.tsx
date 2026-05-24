@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
-import VideoBackground from "@/components/VideoBackground";
+import Spline from "@splinetool/react-spline";
 import MagneticButton from "@/components/MagneticButton";
 import AnimatedHeadline from "@/components/AnimatedHeadline";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const [parallaxOffset, setParallaxOffset] = useState(0);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const rect = sectionRef.current?.getBoundingClientRect();
@@ -26,33 +25,23 @@ export default function HeroSection() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [handleMouseMove]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      setParallaxOffset(rect.top * 0.15);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative h-screen min-h-[700px] flex items-start justify-center overflow-hidden"
+      className="relative h-screen min-h-[700px] flex items-start justify-center overflow-hidden bg-charcoal"
     >
-      {/* Video Background — Pinterest hero */}
-      <VideoBackground
-        src="/videos/coffee-pour.mp4"
-        videoClassName="[filter:brightness(1.25)_saturate(1.35)]"
-        overlay={
-          <>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1a1410]/75 via-[#16110d]/45 to-[#0d0b09]/15" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1a1410]/30 via-transparent to-[#0d0b09]/60" />
-          </>
-        }
-      />
+      {/* Spline 3D background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Spline
+          scene="https://my.spline.design/distortingtypography-uxFNYzMMLPZAKHaeN2BQY6hm/"
+          className="w-full h-full"
+        />
+      </div>
+
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#1a1410]/70 via-[#16110d]/40 to-transparent" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#1a1410]/30 via-transparent to-[#0d0b09]/70" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-20 pt-32 lg:pt-48">
